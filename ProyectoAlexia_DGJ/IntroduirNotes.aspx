@@ -59,7 +59,7 @@
                     <h3 class="panel-title">Alumnes</h3>
                 </div>
                 <div class="panel-body">
-                    <%--S'ha de canviar el "campo de datos" d'aquesta Grid--%>
+                    <%--S'ha de canviar el "campo de datos" d'aquesta Grid lala--%>
                     <asp:GridView ID="GridViewAlumnesIN" runat="server" AutoGenerateColumns="False">
                         
                     </asp:GridView>
