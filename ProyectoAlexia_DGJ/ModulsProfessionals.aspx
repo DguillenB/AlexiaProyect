@@ -34,7 +34,7 @@
                                     <asp:Label ID="Label1" runat="server" Text='<%# Eval("id_curs") %>'></asp:Label>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("cursos.nom") %>'></asp:Label>
+                                    
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

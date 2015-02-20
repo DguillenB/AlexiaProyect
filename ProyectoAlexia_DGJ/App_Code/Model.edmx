@@ -4,7 +4,71 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="alexiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="alexiaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="alexiaModelStoreContainer">
+          <EntitySet Name="alumnes" EntityType="alexiaModel.Store.alumnes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="avaluacions" EntityType="alexiaModel.Store.avaluacions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="avaluar" EntityType="alexiaModel.Store.avaluar" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="cicles" EntityType="alexiaModel.Store.cicles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="cursar" EntityType="alexiaModel.Store.cursar" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="cursos" EntityType="alexiaModel.Store.cursos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="moduls_prof" EntityType="alexiaModel.Store.moduls_prof" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="persones" EntityType="alexiaModel.Store.persones" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="professors" EntityType="alexiaModel.Store.professors" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ufs" EntityType="alexiaModel.Store.ufs" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_alumnes_cursos" Association="alexiaModel.Store.FK_alumnes_cursos">
+            <End Role="cursos" EntitySet="cursos" />
+            <End Role="alumnes" EntitySet="alumnes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_alumnes_persones" Association="alexiaModel.Store.FK_alumnes_persones">
+            <End Role="persones" EntitySet="persones" />
+            <End Role="alumnes" EntitySet="alumnes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_avaluar_alumnes" Association="alexiaModel.Store.FK_avaluar_alumnes">
+            <End Role="alumnes" EntitySet="alumnes" />
+            <End Role="avaluar" EntitySet="avaluar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_avaluar_avaluacions" Association="alexiaModel.Store.FK_avaluar_avaluacions">
+            <End Role="avaluacions" EntitySet="avaluacions" />
+            <End Role="avaluar" EntitySet="avaluar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_avaluar_ufs" Association="alexiaModel.Store.FK_avaluar_ufs">
+            <End Role="ufs" EntitySet="ufs" />
+            <End Role="avaluar" EntitySet="avaluar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cursar_alumnes" Association="alexiaModel.Store.FK_cursar_alumnes">
+            <End Role="alumnes" EntitySet="alumnes" />
+            <End Role="cursar" EntitySet="cursar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cursar_ufs" Association="alexiaModel.Store.FK_cursar_ufs">
+            <End Role="ufs" EntitySet="ufs" />
+            <End Role="cursar" EntitySet="cursar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cursos_cicles" Association="alexiaModel.Store.FK_cursos_cicles">
+            <End Role="cicles" EntitySet="cicles" />
+            <End Role="cursos" EntitySet="cursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cursos_professors" Association="alexiaModel.Store.FK_cursos_professors">
+            <End Role="professors" EntitySet="professors" />
+            <End Role="cursos" EntitySet="cursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_moduls_prof_cursos" Association="alexiaModel.Store.FK_moduls_prof_cursos">
+            <End Role="cursos" EntitySet="cursos" />
+            <End Role="moduls_prof" EntitySet="moduls_prof" />
+          </AssociationSet>
+          <AssociationSet Name="FK_moduls_prof_professors" Association="alexiaModel.Store.FK_moduls_prof_professors">
+            <End Role="professors" EntitySet="professors" />
+            <End Role="moduls_prof" EntitySet="moduls_prof" />
+          </AssociationSet>
+          <AssociationSet Name="FK_professors_professors" Association="alexiaModel.Store.FK_professors_professors">
+            <End Role="persones" EntitySet="persones" />
+            <End Role="professors" EntitySet="professors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ufs_moduls_prof" Association="alexiaModel.Store.FK_ufs_moduls_prof">
+            <End Role="moduls_prof" EntitySet="moduls_prof" />
+            <End Role="ufs" EntitySet="ufs" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="alumnes">
           <Key>
             <PropertyRef Name="id" />
@@ -17,7 +81,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="codi" Type="varchar" MaxLength="50" />
           <Property Name="nom" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -36,9 +100,9 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="codi" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="nom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="codi" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="nom" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="cursar">
           <Key>
@@ -52,9 +116,9 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="codi" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="nom" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="codi" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="nom" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="id_cicle" Type="int" Nullable="false" />
           <Property Name="id_tutor" Type="int" />
         </EntityType>
@@ -63,9 +127,9 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id_curs" Type="int" Nullable="false" />
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="codi" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="nom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="codi" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="nom" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="hores" Type="int" Nullable="false" />
           <Property Name="hores_lliures" Type="int" Nullable="false" />
           <Property Name="id_professor" Type="int" />
@@ -74,34 +138,34 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="dni" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="nom" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="cognom1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="dni" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="nom" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="cognom1" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="cognom2" Type="varchar" MaxLength="50" />
           <Property Name="telefon" Type="varchar" MaxLength="50" />
           <Property Name="correu" Type="varchar" MaxLength="50" />
           <Property Name="adreca" Type="varchar" MaxLength="100" />
-          <Property Name="tipus" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tipus" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="professors">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="nom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nom" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="ufs">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nom" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="id_modul_prof" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_alumnes_cursos">
-          <End Role="cursos" Type="Self.cursos" Multiplicity="1" />
-          <End Role="alumnes" Type="Self.alumnes" Multiplicity="*" />
+          <End Role="cursos" Type="alexiaModel.Store.cursos" Multiplicity="1" />
+          <End Role="alumnes" Type="alexiaModel.Store.alumnes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cursos">
               <PropertyRef Name="id" />
@@ -112,8 +176,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_alumnes_persones">
-          <End Role="persones" Type="Self.persones" Multiplicity="1" />
-          <End Role="alumnes" Type="Self.alumnes" Multiplicity="0..1" />
+          <End Role="persones" Type="alexiaModel.Store.persones" Multiplicity="1" />
+          <End Role="alumnes" Type="alexiaModel.Store.alumnes" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="persones">
               <PropertyRef Name="id" />
@@ -124,8 +188,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_avaluar_alumnes">
-          <End Role="alumnes" Type="Self.alumnes" Multiplicity="1" />
-          <End Role="avaluar" Type="Self.avaluar" Multiplicity="*" />
+          <End Role="alumnes" Type="alexiaModel.Store.alumnes" Multiplicity="1" />
+          <End Role="avaluar" Type="alexiaModel.Store.avaluar" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="alumnes">
               <PropertyRef Name="id" />
@@ -136,8 +200,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_avaluar_avaluacions">
-          <End Role="avaluacions" Type="Self.avaluacions" Multiplicity="1" />
-          <End Role="avaluar" Type="Self.avaluar" Multiplicity="*" />
+          <End Role="avaluacions" Type="alexiaModel.Store.avaluacions" Multiplicity="1" />
+          <End Role="avaluar" Type="alexiaModel.Store.avaluar" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="avaluacions">
               <PropertyRef Name="id" />
@@ -148,8 +212,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_avaluar_ufs">
-          <End Role="ufs" Type="Self.ufs" Multiplicity="1" />
-          <End Role="avaluar" Type="Self.avaluar" Multiplicity="*" />
+          <End Role="ufs" Type="alexiaModel.Store.ufs" Multiplicity="1" />
+          <End Role="avaluar" Type="alexiaModel.Store.avaluar" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ufs">
               <PropertyRef Name="id" />
@@ -160,8 +224,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cursar_alumnes">
-          <End Role="alumnes" Type="Self.alumnes" Multiplicity="1" />
-          <End Role="cursar" Type="Self.cursar" Multiplicity="*" />
+          <End Role="alumnes" Type="alexiaModel.Store.alumnes" Multiplicity="1" />
+          <End Role="cursar" Type="alexiaModel.Store.cursar" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="alumnes">
               <PropertyRef Name="id" />
@@ -172,8 +236,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cursar_ufs">
-          <End Role="ufs" Type="Self.ufs" Multiplicity="1" />
-          <End Role="cursar" Type="Self.cursar" Multiplicity="*" />
+          <End Role="ufs" Type="alexiaModel.Store.ufs" Multiplicity="1" />
+          <End Role="cursar" Type="alexiaModel.Store.cursar" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ufs">
               <PropertyRef Name="id" />
@@ -184,8 +248,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cursos_cicles">
-          <End Role="cicles" Type="Self.cicles" Multiplicity="1" />
-          <End Role="cursos" Type="Self.cursos" Multiplicity="*" />
+          <End Role="cicles" Type="alexiaModel.Store.cicles" Multiplicity="1" />
+          <End Role="cursos" Type="alexiaModel.Store.cursos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cicles">
               <PropertyRef Name="id" />
@@ -196,8 +260,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cursos_professors">
-          <End Role="professors" Type="Self.professors" Multiplicity="0..1" />
-          <End Role="cursos" Type="Self.cursos" Multiplicity="*" />
+          <End Role="professors" Type="alexiaModel.Store.professors" Multiplicity="0..1" />
+          <End Role="cursos" Type="alexiaModel.Store.cursos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="professors">
               <PropertyRef Name="id" />
@@ -208,8 +272,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_moduls_prof_cursos">
-          <End Role="cursos" Type="Self.cursos" Multiplicity="1" />
-          <End Role="moduls_prof" Type="Self.moduls_prof" Multiplicity="*" />
+          <End Role="cursos" Type="alexiaModel.Store.cursos" Multiplicity="1" />
+          <End Role="moduls_prof" Type="alexiaModel.Store.moduls_prof" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cursos">
               <PropertyRef Name="id" />
@@ -220,8 +284,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_moduls_prof_professors">
-          <End Role="professors" Type="Self.professors" Multiplicity="0..1" />
-          <End Role="moduls_prof" Type="Self.moduls_prof" Multiplicity="*" />
+          <End Role="professors" Type="alexiaModel.Store.professors" Multiplicity="0..1" />
+          <End Role="moduls_prof" Type="alexiaModel.Store.moduls_prof" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="professors">
               <PropertyRef Name="id" />
@@ -232,8 +296,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_professors_professors">
-          <End Role="persones" Type="Self.persones" Multiplicity="1" />
-          <End Role="professors" Type="Self.professors" Multiplicity="0..1" />
+          <End Role="persones" Type="alexiaModel.Store.persones" Multiplicity="1" />
+          <End Role="professors" Type="alexiaModel.Store.professors" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="persones">
               <PropertyRef Name="id" />
@@ -244,8 +308,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ufs_moduls_prof">
-          <End Role="moduls_prof" Type="Self.moduls_prof" Multiplicity="1" />
-          <End Role="ufs" Type="Self.ufs" Multiplicity="*" />
+          <End Role="moduls_prof" Type="alexiaModel.Store.moduls_prof" Multiplicity="1" />
+          <End Role="ufs" Type="alexiaModel.Store.ufs" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="moduls_prof">
               <PropertyRef Name="id" />
@@ -255,75 +319,70 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="alexiaModelStoreContainer">
-          <EntitySet Name="alumnes" EntityType="Self.alumnes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="avaluacions" EntityType="Self.avaluacions" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="avaluar" EntityType="Self.avaluar" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="cicles" EntityType="Self.cicles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="cursar" EntityType="Self.cursar" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="cursos" EntityType="Self.cursos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="moduls_prof" EntityType="Self.moduls_prof" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="persones" EntityType="Self.persones" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="professors" EntityType="Self.professors" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ufs" EntityType="Self.ufs" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_alumnes_cursos" Association="Self.FK_alumnes_cursos">
-            <End Role="cursos" EntitySet="cursos" />
-            <End Role="alumnes" EntitySet="alumnes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_alumnes_persones" Association="Self.FK_alumnes_persones">
-            <End Role="persones" EntitySet="persones" />
-            <End Role="alumnes" EntitySet="alumnes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_avaluar_alumnes" Association="Self.FK_avaluar_alumnes">
-            <End Role="alumnes" EntitySet="alumnes" />
-            <End Role="avaluar" EntitySet="avaluar" />
-          </AssociationSet>
-          <AssociationSet Name="FK_avaluar_avaluacions" Association="Self.FK_avaluar_avaluacions">
-            <End Role="avaluacions" EntitySet="avaluacions" />
-            <End Role="avaluar" EntitySet="avaluar" />
-          </AssociationSet>
-          <AssociationSet Name="FK_avaluar_ufs" Association="Self.FK_avaluar_ufs">
-            <End Role="ufs" EntitySet="ufs" />
-            <End Role="avaluar" EntitySet="avaluar" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cursar_alumnes" Association="Self.FK_cursar_alumnes">
-            <End Role="alumnes" EntitySet="alumnes" />
-            <End Role="cursar" EntitySet="cursar" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cursar_ufs" Association="Self.FK_cursar_ufs">
-            <End Role="ufs" EntitySet="ufs" />
-            <End Role="cursar" EntitySet="cursar" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cursos_cicles" Association="Self.FK_cursos_cicles">
-            <End Role="cicles" EntitySet="cicles" />
-            <End Role="cursos" EntitySet="cursos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cursos_professors" Association="Self.FK_cursos_professors">
-            <End Role="professors" EntitySet="professors" />
-            <End Role="cursos" EntitySet="cursos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_moduls_prof_cursos" Association="Self.FK_moduls_prof_cursos">
-            <End Role="cursos" EntitySet="cursos" />
-            <End Role="moduls_prof" EntitySet="moduls_prof" />
-          </AssociationSet>
-          <AssociationSet Name="FK_moduls_prof_professors" Association="Self.FK_moduls_prof_professors">
-            <End Role="professors" EntitySet="professors" />
-            <End Role="moduls_prof" EntitySet="moduls_prof" />
-          </AssociationSet>
-          <AssociationSet Name="FK_professors_professors" Association="Self.FK_professors_professors">
-            <End Role="persones" EntitySet="persones" />
-            <End Role="professors" EntitySet="professors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ufs_moduls_prof" Association="Self.FK_ufs_moduls_prof">
-            <End Role="moduls_prof" EntitySet="moduls_prof" />
-            <End Role="ufs" EntitySet="ufs" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="alexiaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="alexiaModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="alexiaEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="alumnes" EntityType="alexiaModel.alumnes" />
+          <EntitySet Name="avaluacions" EntityType="alexiaModel.avaluacions" />
+          <EntitySet Name="avaluar" EntityType="alexiaModel.avaluar" />
+          <EntitySet Name="cicles" EntityType="alexiaModel.cicles" />
+          <EntitySet Name="cursos" EntityType="alexiaModel.cursos" />
+          <EntitySet Name="moduls_prof" EntityType="alexiaModel.moduls_prof" />
+          <EntitySet Name="persones" EntityType="alexiaModel.persones" />
+          <EntitySet Name="professors" EntityType="alexiaModel.professors" />
+          <EntitySet Name="ufs" EntityType="alexiaModel.ufs" />
+          <AssociationSet Name="FK_alumnes_cursos" Association="alexiaModel.FK_alumnes_cursos">
+            <End Role="cursos" EntitySet="cursos" />
+            <End Role="alumnes" EntitySet="alumnes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_alumnes_persones" Association="alexiaModel.FK_alumnes_persones">
+            <End Role="persones" EntitySet="persones" />
+            <End Role="alumnes" EntitySet="alumnes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_avaluar_alumnes" Association="alexiaModel.FK_avaluar_alumnes">
+            <End Role="alumnes" EntitySet="alumnes" />
+            <End Role="avaluar" EntitySet="avaluar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_avaluar_avaluacions" Association="alexiaModel.FK_avaluar_avaluacions">
+            <End Role="avaluacions" EntitySet="avaluacions" />
+            <End Role="avaluar" EntitySet="avaluar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_avaluar_ufs" Association="alexiaModel.FK_avaluar_ufs">
+            <End Role="ufs" EntitySet="ufs" />
+            <End Role="avaluar" EntitySet="avaluar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cursos_cicles" Association="alexiaModel.FK_cursos_cicles">
+            <End Role="cicles" EntitySet="cicles" />
+            <End Role="cursos" EntitySet="cursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cursos_professors" Association="alexiaModel.FK_cursos_professors">
+            <End Role="professors" EntitySet="professors" />
+            <End Role="cursos" EntitySet="cursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_moduls_prof_cursos" Association="alexiaModel.FK_moduls_prof_cursos">
+            <End Role="cursos" EntitySet="cursos" />
+            <End Role="moduls_prof" EntitySet="moduls_prof" />
+          </AssociationSet>
+          <AssociationSet Name="FK_moduls_prof_professors" Association="alexiaModel.FK_moduls_prof_professors">
+            <End Role="professors" EntitySet="professors" />
+            <End Role="moduls_prof" EntitySet="moduls_prof" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ufs_moduls_prof" Association="alexiaModel.FK_ufs_moduls_prof">
+            <End Role="moduls_prof" EntitySet="moduls_prof" />
+            <End Role="ufs" EntitySet="ufs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_professors_professors" Association="alexiaModel.FK_professors_professors">
+            <End Role="persones" EntitySet="persones" />
+            <End Role="professors" EntitySet="professors" />
+          </AssociationSet>
+          <AssociationSet Name="cursar" Association="alexiaModel.cursar">
+            <End Role="alumnes" EntitySet="alumnes" />
+            <End Role="ufs" EntitySet="ufs" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="alumnes">
           <Key>
             <PropertyRef Name="id" />
@@ -331,19 +390,19 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="data_naixement" Type="DateTime" Precision="0" />
           <Property Name="id_curs" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="cursos" Relationship="Self.FK_alumnes_cursos" FromRole="alumnes" ToRole="cursos" />
-          <NavigationProperty Name="persones" Relationship="Self.FK_alumnes_persones" FromRole="alumnes" ToRole="persones" />
-          <NavigationProperty Name="avaluar" Relationship="Self.FK_avaluar_alumnes" FromRole="alumnes" ToRole="avaluar" />
-          <NavigationProperty Name="ufs" Relationship="Self.cursar" FromRole="alumnes" ToRole="ufs" />
+          <NavigationProperty Name="cursos" Relationship="alexiaModel.FK_alumnes_cursos" FromRole="alumnes" ToRole="cursos" />
+          <NavigationProperty Name="persones" Relationship="alexiaModel.FK_alumnes_persones" FromRole="alumnes" ToRole="persones" />
+          <NavigationProperty Name="avaluar" Relationship="alexiaModel.FK_avaluar_alumnes" FromRole="alumnes" ToRole="avaluar" />
+          <NavigationProperty Name="ufs" Relationship="alexiaModel.cursar" FromRole="alumnes" ToRole="ufs" />
         </EntityType>
         <EntityType Name="avaluacions">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="codi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="avaluar" Relationship="Self.FK_avaluar_avaluacions" FromRole="avaluacions" ToRole="avaluar" />
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="codi" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="nom" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="avaluar" Relationship="alexiaModel.FK_avaluar_avaluacions" FromRole="avaluacions" ToRole="avaluar" />
         </EntityType>
         <EntityType Name="avaluar">
           <Key>
@@ -355,88 +414,88 @@
           <Property Name="id_uf" Type="Int32" Nullable="false" />
           <Property Name="id_avaluacio" Type="Int32" Nullable="false" />
           <Property Name="nota" Type="Double" />
-          <NavigationProperty Name="alumnes" Relationship="Self.FK_avaluar_alumnes" FromRole="avaluar" ToRole="alumnes" />
-          <NavigationProperty Name="avaluacions" Relationship="Self.FK_avaluar_avaluacions" FromRole="avaluar" ToRole="avaluacions" />
-          <NavigationProperty Name="ufs" Relationship="Self.FK_avaluar_ufs" FromRole="avaluar" ToRole="ufs" />
+          <NavigationProperty Name="alumnes" Relationship="alexiaModel.FK_avaluar_alumnes" FromRole="avaluar" ToRole="alumnes" />
+          <NavigationProperty Name="avaluacions" Relationship="alexiaModel.FK_avaluar_avaluacions" FromRole="avaluar" ToRole="avaluacions" />
+          <NavigationProperty Name="ufs" Relationship="alexiaModel.FK_avaluar_ufs" FromRole="avaluar" ToRole="ufs" />
         </EntityType>
         <EntityType Name="cicles">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="codi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="cursos" Relationship="Self.FK_cursos_cicles" FromRole="cicles" ToRole="cursos" />
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="codi" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="nom" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="cursos" Relationship="alexiaModel.FK_cursos_cicles" FromRole="cicles" ToRole="cursos" />
         </EntityType>
         <EntityType Name="cursos">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="codi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="codi" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="nom" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="id_cicle" Type="Int32" Nullable="false" />
           <Property Name="id_tutor" Type="Int32" />
-          <NavigationProperty Name="alumnes" Relationship="Self.FK_alumnes_cursos" FromRole="cursos" ToRole="alumnes" />
-          <NavigationProperty Name="cicles" Relationship="Self.FK_cursos_cicles" FromRole="cursos" ToRole="cicles" />
-          <NavigationProperty Name="professors" Relationship="Self.FK_cursos_professors" FromRole="cursos" ToRole="professors" />
-          <NavigationProperty Name="moduls_prof" Relationship="Self.FK_moduls_prof_cursos" FromRole="cursos" ToRole="moduls_prof" />
+          <NavigationProperty Name="alumnes" Relationship="alexiaModel.FK_alumnes_cursos" FromRole="cursos" ToRole="alumnes" />
+          <NavigationProperty Name="cicles" Relationship="alexiaModel.FK_cursos_cicles" FromRole="cursos" ToRole="cicles" />
+          <NavigationProperty Name="professors" Relationship="alexiaModel.FK_cursos_professors" FromRole="cursos" ToRole="professors" />
+          <NavigationProperty Name="moduls_prof" Relationship="alexiaModel.FK_moduls_prof_cursos" FromRole="cursos" ToRole="moduls_prof" />
         </EntityType>
         <EntityType Name="moduls_prof">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id_curs" Type="Int32" Nullable="false" />
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="codi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="codi" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="nom" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="hores" Type="Int32" Nullable="false" />
           <Property Name="hores_lliures" Type="Int32" Nullable="false" />
           <Property Name="id_professor" Type="Int32" />
-          <NavigationProperty Name="cursos" Relationship="Self.FK_moduls_prof_cursos" FromRole="moduls_prof" ToRole="cursos" />
-          <NavigationProperty Name="professors" Relationship="Self.FK_moduls_prof_professors" FromRole="moduls_prof" ToRole="professors" />
-          <NavigationProperty Name="ufs" Relationship="Self.FK_ufs_moduls_prof" FromRole="moduls_prof" ToRole="ufs" />
+          <NavigationProperty Name="cursos" Relationship="alexiaModel.FK_moduls_prof_cursos" FromRole="moduls_prof" ToRole="cursos" />
+          <NavigationProperty Name="professors" Relationship="alexiaModel.FK_moduls_prof_professors" FromRole="moduls_prof" ToRole="professors" />
+          <NavigationProperty Name="ufs" Relationship="alexiaModel.FK_ufs_moduls_prof" FromRole="moduls_prof" ToRole="ufs" />
         </EntityType>
         <EntityType Name="persones">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="dni" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="cognom1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="cognom2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="correu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="adreca" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="tipus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="alumnes" Relationship="Self.FK_alumnes_persones" FromRole="persones" ToRole="alumnes" />
-          <NavigationProperty Name="professors" Relationship="Self.FK_professors_professors" FromRole="persones" ToRole="professors" />
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="dni" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="nom" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="cognom1" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="cognom2" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="telefon" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="correu" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="adreca" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="tipus" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="alumnes" Relationship="alexiaModel.FK_alumnes_persones" FromRole="persones" ToRole="alumnes" />
+          <NavigationProperty Name="professors" Relationship="alexiaModel.FK_professors_professors" FromRole="persones" ToRole="professors" />
         </EntityType>
         <EntityType Name="professors">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="cursos" Relationship="Self.FK_cursos_professors" FromRole="professors" ToRole="cursos" />
-          <NavigationProperty Name="moduls_prof" Relationship="Self.FK_moduls_prof_professors" FromRole="professors" ToRole="moduls_prof" />
-          <NavigationProperty Name="persones" Relationship="Self.FK_professors_professors" FromRole="professors" ToRole="persones" />
+          <Property Name="nom" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="cursos" Relationship="alexiaModel.FK_cursos_professors" FromRole="professors" ToRole="cursos" />
+          <NavigationProperty Name="moduls_prof" Relationship="alexiaModel.FK_moduls_prof_professors" FromRole="professors" ToRole="moduls_prof" />
+          <NavigationProperty Name="persones" Relationship="alexiaModel.FK_professors_professors" FromRole="professors" ToRole="persones" />
         </EntityType>
         <EntityType Name="ufs">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="id_modul_prof" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="avaluar" Relationship="Self.FK_avaluar_ufs" FromRole="ufs" ToRole="avaluar" />
-          <NavigationProperty Name="moduls_prof" Relationship="Self.FK_ufs_moduls_prof" FromRole="ufs" ToRole="moduls_prof" />
-          <NavigationProperty Name="alumnes" Relationship="Self.cursar" FromRole="ufs" ToRole="alumnes" />
+          <NavigationProperty Name="avaluar" Relationship="alexiaModel.FK_avaluar_ufs" FromRole="ufs" ToRole="avaluar" />
+          <NavigationProperty Name="moduls_prof" Relationship="alexiaModel.FK_ufs_moduls_prof" FromRole="ufs" ToRole="moduls_prof" />
+          <NavigationProperty Name="alumnes" Relationship="alexiaModel.cursar" FromRole="ufs" ToRole="alumnes" />
         </EntityType>
         <Association Name="FK_alumnes_cursos">
-          <End Role="cursos" Type="Self.cursos" Multiplicity="1" />
-          <End Role="alumnes" Type="Self.alumnes" Multiplicity="*" />
+          <End Role="cursos" Type="alexiaModel.cursos" Multiplicity="1" />
+          <End Role="alumnes" Type="alexiaModel.alumnes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cursos">
               <PropertyRef Name="id" />
@@ -447,8 +506,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_alumnes_persones">
-          <End Role="persones" Type="Self.persones" Multiplicity="1" />
-          <End Role="alumnes" Type="Self.alumnes" Multiplicity="0..1" />
+          <End Role="persones" Type="alexiaModel.persones" Multiplicity="1" />
+          <End Role="alumnes" Type="alexiaModel.alumnes" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="persones">
               <PropertyRef Name="id" />
@@ -459,8 +518,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_avaluar_alumnes">
-          <End Role="alumnes" Type="Self.alumnes" Multiplicity="1" />
-          <End Role="avaluar" Type="Self.avaluar" Multiplicity="*" />
+          <End Role="alumnes" Type="alexiaModel.alumnes" Multiplicity="1" />
+          <End Role="avaluar" Type="alexiaModel.avaluar" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="alumnes">
               <PropertyRef Name="id" />
@@ -471,8 +530,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_avaluar_avaluacions">
-          <End Role="avaluacions" Type="Self.avaluacions" Multiplicity="1" />
-          <End Role="avaluar" Type="Self.avaluar" Multiplicity="*" />
+          <End Role="avaluacions" Type="alexiaModel.avaluacions" Multiplicity="1" />
+          <End Role="avaluar" Type="alexiaModel.avaluar" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="avaluacions">
               <PropertyRef Name="id" />
@@ -483,8 +542,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_avaluar_ufs">
-          <End Role="ufs" Type="Self.ufs" Multiplicity="1" />
-          <End Role="avaluar" Type="Self.avaluar" Multiplicity="*" />
+          <End Role="ufs" Type="alexiaModel.ufs" Multiplicity="1" />
+          <End Role="avaluar" Type="alexiaModel.avaluar" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ufs">
               <PropertyRef Name="id" />
@@ -495,8 +554,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cursos_cicles">
-          <End Role="cicles" Type="Self.cicles" Multiplicity="1" />
-          <End Role="cursos" Type="Self.cursos" Multiplicity="*" />
+          <End Role="cicles" Type="alexiaModel.cicles" Multiplicity="1" />
+          <End Role="cursos" Type="alexiaModel.cursos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cicles">
               <PropertyRef Name="id" />
@@ -507,8 +566,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_cursos_professors">
-          <End Role="professors" Type="Self.professors" Multiplicity="0..1" />
-          <End Role="cursos" Type="Self.cursos" Multiplicity="*" />
+          <End Role="professors" Type="alexiaModel.professors" Multiplicity="0..1" />
+          <End Role="cursos" Type="alexiaModel.cursos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="professors">
               <PropertyRef Name="id" />
@@ -519,8 +578,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_moduls_prof_cursos">
-          <End Role="cursos" Type="Self.cursos" Multiplicity="1" />
-          <End Role="moduls_prof" Type="Self.moduls_prof" Multiplicity="*" />
+          <End Role="cursos" Type="alexiaModel.cursos" Multiplicity="1" />
+          <End Role="moduls_prof" Type="alexiaModel.moduls_prof" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cursos">
               <PropertyRef Name="id" />
@@ -531,8 +590,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_moduls_prof_professors">
-          <End Role="professors" Type="Self.professors" Multiplicity="0..1" />
-          <End Role="moduls_prof" Type="Self.moduls_prof" Multiplicity="*" />
+          <End Role="professors" Type="alexiaModel.professors" Multiplicity="0..1" />
+          <End Role="moduls_prof" Type="alexiaModel.moduls_prof" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="professors">
               <PropertyRef Name="id" />
@@ -543,8 +602,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ufs_moduls_prof">
-          <End Role="moduls_prof" Type="Self.moduls_prof" Multiplicity="1" />
-          <End Role="ufs" Type="Self.ufs" Multiplicity="*" />
+          <End Role="moduls_prof" Type="alexiaModel.moduls_prof" Multiplicity="1" />
+          <End Role="ufs" Type="alexiaModel.ufs" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="moduls_prof">
               <PropertyRef Name="id" />
@@ -555,8 +614,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_professors_professors">
-          <End Role="persones" Type="Self.persones" Multiplicity="1" />
-          <End Role="professors" Type="Self.professors" Multiplicity="0..1" />
+          <End Role="persones" Type="alexiaModel.persones" Multiplicity="1" />
+          <End Role="professors" Type="alexiaModel.professors" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="persones">
               <PropertyRef Name="id" />
@@ -567,68 +626,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="cursar">
-          <End Role="alumnes" Type="Self.alumnes" Multiplicity="*" />
-          <End Role="ufs" Type="Self.ufs" Multiplicity="*" />
+          <End Role="alumnes" Type="alexiaModel.alumnes" Multiplicity="*" />
+          <End Role="ufs" Type="alexiaModel.ufs" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="alexiaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="alumnes" EntityType="Self.alumnes" />
-          <EntitySet Name="avaluacions" EntityType="Self.avaluacions" />
-          <EntitySet Name="avaluar" EntityType="Self.avaluar" />
-          <EntitySet Name="cicles" EntityType="Self.cicles" />
-          <EntitySet Name="cursos" EntityType="Self.cursos" />
-          <EntitySet Name="moduls_prof" EntityType="Self.moduls_prof" />
-          <EntitySet Name="persones" EntityType="Self.persones" />
-          <EntitySet Name="professors" EntityType="Self.professors" />
-          <EntitySet Name="ufs" EntityType="Self.ufs" />
-          <AssociationSet Name="FK_alumnes_cursos" Association="Self.FK_alumnes_cursos">
-            <End Role="cursos" EntitySet="cursos" />
-            <End Role="alumnes" EntitySet="alumnes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_alumnes_persones" Association="Self.FK_alumnes_persones">
-            <End Role="persones" EntitySet="persones" />
-            <End Role="alumnes" EntitySet="alumnes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_avaluar_alumnes" Association="Self.FK_avaluar_alumnes">
-            <End Role="alumnes" EntitySet="alumnes" />
-            <End Role="avaluar" EntitySet="avaluar" />
-          </AssociationSet>
-          <AssociationSet Name="FK_avaluar_avaluacions" Association="Self.FK_avaluar_avaluacions">
-            <End Role="avaluacions" EntitySet="avaluacions" />
-            <End Role="avaluar" EntitySet="avaluar" />
-          </AssociationSet>
-          <AssociationSet Name="FK_avaluar_ufs" Association="Self.FK_avaluar_ufs">
-            <End Role="ufs" EntitySet="ufs" />
-            <End Role="avaluar" EntitySet="avaluar" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cursos_cicles" Association="Self.FK_cursos_cicles">
-            <End Role="cicles" EntitySet="cicles" />
-            <End Role="cursos" EntitySet="cursos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cursos_professors" Association="Self.FK_cursos_professors">
-            <End Role="professors" EntitySet="professors" />
-            <End Role="cursos" EntitySet="cursos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_moduls_prof_cursos" Association="Self.FK_moduls_prof_cursos">
-            <End Role="cursos" EntitySet="cursos" />
-            <End Role="moduls_prof" EntitySet="moduls_prof" />
-          </AssociationSet>
-          <AssociationSet Name="FK_moduls_prof_professors" Association="Self.FK_moduls_prof_professors">
-            <End Role="professors" EntitySet="professors" />
-            <End Role="moduls_prof" EntitySet="moduls_prof" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ufs_moduls_prof" Association="Self.FK_ufs_moduls_prof">
-            <End Role="moduls_prof" EntitySet="moduls_prof" />
-            <End Role="ufs" EntitySet="ufs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_professors_professors" Association="Self.FK_professors_professors">
-            <End Role="persones" EntitySet="persones" />
-            <End Role="professors" EntitySet="professors" />
-          </AssociationSet>
-          <AssociationSet Name="cursar" Association="Self.cursar">
-            <End Role="alumnes" EntitySet="alumnes" />
-            <End Role="ufs" EntitySet="ufs" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -750,9 +750,8 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
