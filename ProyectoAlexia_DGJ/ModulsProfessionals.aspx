@@ -26,6 +26,7 @@
 
                     <asp:GridView ID="GridViewsMP" runat="server" AutoGenerateColumns="False" DataSourceID="EntityDataSourceMP">
                         <Columns>
+                            <asp:CommandField ShowSelectButton="True" />
                             <asp:BoundField DataField="nom" HeaderText="nom" ReadOnly="True" SortExpression="nom" />
                             <asp:BoundField DataField="codi" HeaderText="codi" ReadOnly="True" SortExpression="codi" />
                             <asp:TemplateField HeaderText="Curs" SortExpression="id_curs">
@@ -33,7 +34,7 @@
                                     <asp:Label ID="Label1" runat="server" Text='<%# Eval("id_curs") %>'></asp:Label>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("id_curs") %>'></asp:Label>
+                                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("cursos.nom") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
@@ -41,8 +42,6 @@
                     </asp:GridView>
                 </div>
                 <asp:EntityDataSource ID="EntityDataSourceMP" runat="server" ConnectionString="name=alexiaEntities" DefaultContainerName="alexiaEntities" EnableFlattening="False" EntitySetName="moduls_prof" Select="it.[nom], it.[codi], it.[id_curs]">
-                </asp:EntityDataSource>
-                <asp:EntityDataSource ID="EntityDataSource1" runat="server" ConnectionString="name=alexiaEntities" DefaultContainerName="alexiaEntities" EnableFlattening="False" EntitySetName="cursos" Select="it.[nom]">
                 </asp:EntityDataSource>
             </div>
         </div>

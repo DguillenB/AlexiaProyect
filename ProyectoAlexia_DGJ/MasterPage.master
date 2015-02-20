@@ -1,7 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -16,46 +14,42 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <div>
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
-
                     <div class="navbar-header">
-                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                      </button>
-                      <a class="navbar-brand" href="inici.aspx">Inici</a>
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="inici.aspx">Inici</a>
                     </div>
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Dades Mestres <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="ModulsProfessionals.aspx">Mantenir moduls Professinonals</a></li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dades Mestres <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="ModulsProfessionals.aspx">Moduls Professionals</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="UnitatsFormatives.aspx">Mantenir UFs</a></li>
+                                    <li><a href="UnitatsFormatives.aspx">Unitats Formatives</a></li>
                                 </ul>
                             </li>
-                             <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Notes <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="Assignar_UF_Alumnes">Asignar UFs a alumnes</a></li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Notes <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="AsignarUF_Alumnes.aspx">Asignar Uf als alumnes</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="IntroduirNotes.aspx">Introduir notes</a></li>
+                                    <li><a href="IntroduccioNotes.aspx">Introducció Notes</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
-
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
