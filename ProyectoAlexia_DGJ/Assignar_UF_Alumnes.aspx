@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Assignar_UF_Alumnes.aspx.cs" Inherits="Assignar_UF_Alumnes" %>
 
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -12,7 +14,9 @@
                 <div class="form-group">
                     <label for="select" class="col-lg-2 col-md-2 control-label">Cicle</label>
                     <div class="col-lg-10 col-md-10">
-                        <asp:DropDownList ID="DropDownListCicle" runat="server" CssClass="form-control"></asp:DropDownList>                  
+                        <asp:DropDownList ID="DropDownListCicle" runat="server" CssClass="form-control" AutoPostBack="True" DataSourceID="EntityDataSourceCicles" DataTextField="nom" DataValueField="nom" OnSelectedIndexChanged="DropDownListCicle_SelectedIndexChanged"></asp:DropDownList>                  
+                        <asp:EntityDataSource ID="EntityDataSourceCicles" runat="server" ConnectionString="name=alexiaEntities" DefaultContainerName="alexiaEntities" EnableFlattening="False" EntitySetName="cicles" Select="it.[nom], it.[id]">
+                        </asp:EntityDataSource>
                     </div>
                 </div>
             </div>
@@ -20,7 +24,9 @@
                 <div class="form-group">
                     <label for="select" class="col-lg-2 col-md-2 control-label">Curs</label>
                     <div class="col-lg-10 col-md-10">
-                        <asp:DropDownList ID="DropDownListCurs" runat="server" CssClass="form-control"></asp:DropDownList>                  
+                        <asp:DropDownList ID="DropDownListCurs" runat="server" CssClass="form-control" AutoPostBack="True" DataSourceID="EntityDataSourceCursos" DataTextField="nom" DataValueField="nom" OnSelectedIndexChanged="DropDownListCurs_SelectedIndexChanged"></asp:DropDownList>                  
+                        <asp:EntityDataSource ID="EntityDataSourceCursos" runat="server" ConnectionString="name=alexiaEntities" DefaultContainerName="alexiaEntities" EnableFlattening="False" EntitySetName="cursos" Select="it.[nom], it.[id_cicle]">
+                        </asp:EntityDataSource>
                     </div>
                 </div>
             </div>

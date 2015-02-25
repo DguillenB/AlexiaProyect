@@ -11,4 +11,13 @@ public partial class Assignar_UF_Alumnes : System.Web.UI.Page
     {
 
     }
+
+    protected void DropDownListCicle_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void DropDownListCurs_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 }
