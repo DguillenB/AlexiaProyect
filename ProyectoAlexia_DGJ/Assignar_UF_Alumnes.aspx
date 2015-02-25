@@ -7,17 +7,22 @@
         <div class="panel-heading">
             <h3 class="panel-title">Assignar Unitats Formatives</h3>
         </div>
-        
-        <div class="form-group">
-            <label for="select" class="col-lg-2 col-md-2 control-label">Cicle</label>
-            <div class="col-lg-10 col-md-10">
-                <asp:DropDownList ID="DropDownListCicle" runat="server" CssClass="form-control"></asp:DropDownList>                  
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="select" class="col-lg-2 col-md-2 control-label">Cicle</label>
+                    <div class="col-lg-10 col-md-10">
+                        <asp:DropDownList ID="DropDownListCicle" runat="server" CssClass="form-control"></asp:DropDownList>                  
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="select" class="col-lg-2 col-md-2 control-label">Curs</label>
-            <div class="col-lg-10 col-md-10">
-                <asp:DropDownList ID="DropDownListCurs" runat="server" CssClass="form-control"></asp:DropDownList>                  
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="select" class="col-lg-2 col-md-2 control-label">Curs</label>
+                    <div class="col-lg-10 col-md-10">
+                        <asp:DropDownList ID="DropDownListCurs" runat="server" CssClass="form-control"></asp:DropDownList>                  
+                    </div>
+                </div>
             </div>
         </div>
         <div class="panel-body">
