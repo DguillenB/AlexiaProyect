@@ -9,21 +9,27 @@ using System.Web.UI.WebControls;
 
 public partial class ModulsProfessionals : System.Web.UI.Page
 {
-    alexiaEntities contexto = new alexiaEntities();
-
+    static string _where = "";
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        List<cicles> ciclos =
-            (from c in contexto.cicles
-             orderby c.codi ascending
-             select c).ToList();
 
-        DropDownListCicleMP.DataTextField = "codi";
-        DropDownListCicleMP.DataValueField = "id";
-
-        DropDownListCicleMP.DataSource = ciclos;
-        DropDownListCicleMP.DataBind();
     }
-    
+
+    protected void DropDownListCicleMP_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (int.Parse(DropDownListCicleMP.SelectedValue) == 0)
+        {
+            _where = "";
+            EntityDataSourceMP.Where = _where;
+        }
+        else
+        {
+            _where = "it.cursos.id_cicle = " + DropDownListCicleMP.SelectedValue;
+            EntityDataSourceMP.Where = _where;
+        }
+
+        GridViewsMP.PageIndex = 0;
+    }
+
 }
