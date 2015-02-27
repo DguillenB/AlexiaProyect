@@ -14,7 +14,9 @@
                 <div class="form-group">
                     <label for="select" class="col-lg-2 col-md-2 control-label">Cicle</label>
                     <div class="col-lg-10 col-md-10">
-                        <asp:DropDownList ID="DropDownListCicle" runat="server" CssClass="form-control" AutoPostBack="True" DataSourceID="EntityDataSourceCicles" DataTextField="nom" DataValueField="nom" OnSelectedIndexChanged="DropDownListCicle_SelectedIndexChanged"></asp:DropDownList>                  
+                        <asp:DropDownList ID="DropDownListCicle" runat="server" CssClass="form-control" DataSourceID="EntityDataSourceCicles" DataTextField="nom" DataValueField="nom" OnSelectedIndexChanged="DropDownListCicle_SelectedIndexChanged"></asp:DropDownList>                  
+                        <asp:CascadingDropDown ID="DropDownListCicle_CascadingDropDown" runat="server" Category="ciclos" Enabled="True" PromptText="Escoge un ciclo" ServiceMethod="GetDropDownContents" TargetControlID="DropDownListCicle" UseContextKey="True">
+                        </asp:CascadingDropDown>
                         <asp:EntityDataSource ID="EntityDataSourceCicles" runat="server" ConnectionString="name=alexiaEntities" DefaultContainerName="alexiaEntities" EnableFlattening="False" EntitySetName="cicles" Select="it.[nom], it.[id]">
                         </asp:EntityDataSource>
                     </div>
@@ -24,7 +26,9 @@
                 <div class="form-group">
                     <label for="select" class="col-lg-2 col-md-2 control-label">Curs</label>
                     <div class="col-lg-10 col-md-10">
-                        <asp:DropDownList ID="DropDownListCurs" runat="server" CssClass="form-control" AutoPostBack="True" DataSourceID="EntityDataSourceCursos" DataTextField="nom" DataValueField="nom" OnSelectedIndexChanged="DropDownListCurs_SelectedIndexChanged"></asp:DropDownList>                  
+                        <asp:DropDownList ID="DropDownListCurs" runat="server" CssClass="form-control" DataSourceID="EntityDataSourceCursos" DataTextField="nom" DataValueField="nom" OnSelectedIndexChanged="DropDownListCurs_SelectedIndexChanged"></asp:DropDownList>                  
+                        <asp:CascadingDropDown ID="DropDownListCurs_CascadingDropDown" runat="server" Category="cursos" EmptyText="No hay cursos" Enabled="True" ParentControlID="DropDownListCicle" PromptText="Escoge un curso" ServiceMethod="GetDropDownContents2" TargetControlID="DropDownListCurs" UseContextKey="True">
+                        </asp:CascadingDropDown>
                         <asp:EntityDataSource ID="EntityDataSourceCursos" runat="server" ConnectionString="name=alexiaEntities" DefaultContainerName="alexiaEntities" EnableFlattening="False" EntitySetName="cursos" Select="it.[nom], it.[id_cicle]">
                         </asp:EntityDataSource>
                     </div>
