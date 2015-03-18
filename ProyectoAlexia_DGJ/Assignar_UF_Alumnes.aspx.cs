@@ -10,6 +10,8 @@ using System.IO;
 
 public partial class Assignar_UF_Alumnes : System.Web.UI.Page
 {
+    static string _where = "";
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -21,7 +23,9 @@ public partial class Assignar_UF_Alumnes : System.Web.UI.Page
     }
     protected void DropDownListCurs_SelectedIndexChanged(object sender, EventArgs e)
     {
-
+        _where = "it.alumnes.id_curs = " + DropDownListCurs.SelectedValue;
+        EntityDataSourcePersonasAlumno.Where = _where;
+        
     }
 
     //PRIMER DROPDOWN CASCADING
@@ -84,8 +88,28 @@ public partial class Assignar_UF_Alumnes : System.Web.UI.Page
             i++;
         }
 
+       
         return resultados;
     }
 
 
+    protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        /*PROGRAMAR AQUÍ QUE SOLO MUESTRE EN GRID  ID y datos de PERSONAS que sean = ALUMNOS*/
+           
+            /*cursos.id = alumnes.id_curs 
+              y
+             *alumnes.id = persones.id
+             *
+             * agregar entity datasource de personas (porque es de quien quiero mostrar datos) enlazarla con la gridview
+             * en el DataSource hacer un include de "alumnes"
+             * 
+             * luego recoger el valor de la dropdown list cursos y coger id
+             * comparar ese id_cursos con el que tenga de alumnos.id_curso
+             */
+            //_where = "it.alumnes.id_curs = " + DropDownListCurs.SelectedValue;
+            //EntityDataSourcePersonasAlumno.Where = _where;
+
+        
+    }
 }
